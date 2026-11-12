@@ -1,0 +1,25 @@
+[project]
+name = "timbertalk-cad"
+version = "0.1.0"
+description = "TimberTalk Modul B: LLM-CAD"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "sqlmodel",
+    "pydantic-settings",
+    "uvicorn",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["timbertalk_cad"]
+
+[tool.pytest.ini_options]
+testpaths = ["timbertalk_cad"]
+python_files = ["test_*.py"]

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TimberTalk CAD</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, sans-serif;
+      background: #f6f4ef;
+      color: #3b3a36;
+    }
+    main {
+      padding: 2rem 2.5rem;
+      background: #fff;
+      border: 1px solid #e3dfd5;
+      border-radius: 8px;
+      text-align: center;
+    }
+    h1 { margin: 0 0 1rem; font-weight: 500; font-size: 1.6rem; }
+    p { margin: 0.3rem 0; color: #6b675e; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TimberTalk CAD läuft</h1>
+    <p>Server: <span id="server">wird geprüft …</span></p>
+    <p>Datenbank: <span id="db">wird geprüft …</span></p>
+  </main>
+
+  <script>
+    // Adresse der API (bei Bedarf anpassen)
+    const API_URL = "/api/cad/health";
+
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById("server").textContent = data.status;
+        document.getElementById("db").textContent = data.db;
+      })
+      .catch(() => {
+        document.getElementById("server").textContent = "nicht erreichbar";
+        document.getElementById("db").textContent = "unbekannt";
+      });
+  </script>
+</body>
+</html>
